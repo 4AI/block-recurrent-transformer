@@ -65,7 +65,7 @@ def train_eval( train_data, test_data, tokenizer, config, epochs=5, verbose_inte
     opt = Adam(model.parameters())
     train_data = WikiDataset(train_data)
     test_data = WikiDataset(test_data)
-    for epoch in epochs:
+    for epoch in range(epochs):
         # train
         model.train()
         i = 0
