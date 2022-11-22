@@ -101,7 +101,7 @@ def train_eval( train_data, test_data, tokenizer, config, epochs=20, verbose_int
                 ppl = ppl.detach().cpu().item()
                 all_train_ppls.append(ppl)
                 if i % verbose_interval == 0:
-                    print(f'Epoch: {epoch}, steps: {round(i/total_steps)}% ({i}/{total_steps}), loss: {loss_score}, ppl: {ppl}')
+                    print(f'Epoch: {epoch}, steps: {round(i/total_steps) * 100}% ({i}/{total_steps}), loss: {loss_score}, ppl: {ppl}')
 
                 loss.backward()
                 opt.step()
@@ -133,7 +133,7 @@ def train_eval( train_data, test_data, tokenizer, config, epochs=20, verbose_int
                     ppl = ppl.detach().item()
                     all_ppls.append(ppl)
                     if i % verbose_interval == 0:
-                        print(f'(eval) Epoch: {epoch}, steps: {round(i/total_steps)}% ({i}/{total_steps}), loss: {loss}, ppl: {ppl}')
+                        print(f'(eval) Epoch: {epoch}, steps: {round(i/total_steps) * 100}% ({i}/{total_steps}), loss: {loss}, ppl: {ppl}')
 
                     i += 1
             avg_test_ppl = sum(all_ppls) / len(all_ppls)
