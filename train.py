@@ -85,7 +85,7 @@ def train_eval( train_data, test_data, tokenizer, config, epochs=20, verbose_int
         print('total train steps:', total_steps)
         for raw_batch in data_loader:
             state = None
-            article_batch = tokenizer(raw_batch, return_tensors='pt', max_length=256, truncation='longest_first', padding=True)['input_ids']
+            article_batch = tokenizer(raw_batch, return_tensors='pt', max_length=config.seq_len, truncation='longest_first', padding=True)['input_ids']
             for text in long_sequence_splitter(article_batch, config.window_len):
                 inputs = text[:, :-1].to(device)
                 targets = text[:, 1:].to(device)
